@@ -6,6 +6,10 @@ class Game extends Phaser.Game {
     constructor(config) {
         super(config);
 
+        if (!window.game) {
+            window.game = this;
+        }
+
         this.getCurrentScene = this.getCurrentScene.bind(this);
     }
 

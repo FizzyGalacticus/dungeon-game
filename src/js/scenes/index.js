@@ -1,5 +1,6 @@
 'use strict';
 
 import main from './main';
+import dungeon from './Dungeon';
 
-export default [main];
+export default [dungeon, main];

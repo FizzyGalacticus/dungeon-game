@@ -2,43 +2,35 @@
 
 import Phaser from 'phaser';
 
-import Background from '../entities/Background';
-import LogoFactory from '../entities/LogoFactory';
+import { tilesets } from '../util/asset';
 
-import { baseURL, particles } from '../util/asset';
+const layerData = [
+    [0, 1, 2, 3, 4, 5],
+    [10, 11, 12, 13, 14, 15],
+    [20, 21, 22, 23, 24, 25],
+    [30, 31, 32, 33, 34, 35],
+    [40, 41, 42, 43, 44, 45],
+];
 
 class MainScene extends Phaser.Scene {
     constructor() {
         super('main');
 
-        this.logoFactory = new LogoFactory(this);
-        this.logoFactory.addCreateListener(logo => {
-            const particles = this.add.particles('red');
-
-            const emitter = particles.createEmitter({
-                speed: 100,
-                scale: { start: 1, end: 0 },
-                blendMode: 'ADD',
-            });
-
-            emitter.startFollow(logo);
-        });
-
-        this.entities = [new Background(this, 'space'), this.logoFactory];
+        this.entities = [];
     }
 
     preload() {
-        this.load.setBaseURL(baseURL);
-
         this.entities.forEach(entity => entity.preload());
 
-        this.load.image('red', particles.red);
+        this.load.image('tiles', tilesets.main);
     }
 
     create() {
         this.entities.forEach(entity => entity.create());
 
-        this.logoFactory.new(400, 100);
+        this.map = this.make.tilemap({ data: layerData, tileWidth: 16, tileHeight: 16 });
+        this.tiles = this.map.addTilesetImage('tiles');
+        this.layer = this.map.createStaticLayer(0, this.tiles, 0, 0);
     }
 
     update(time, delta) {

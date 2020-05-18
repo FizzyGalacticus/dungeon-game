@@ -17,10 +17,12 @@ const gameConfig = {
             gravity: { y: 300 },
         },
     },
+    // scale: {
+    //     mode: Phaser.Scale.FIT,
+    // },
     scene: scenes,
 };
 
 document.title = gameConfig.title;
 
-// eslint-disable-next-line no-unused-vars
-const game = new Game(gameConfig);
+window.game = new Game(gameConfig);

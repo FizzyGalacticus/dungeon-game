@@ -13,7 +13,7 @@ const conf = {
 export default new Proxy(pino(conf), {
     get(target, prop) {
         if (prop in target) {
-            if (env !== 'debug') {
+            if (env !== 'dev') {
                 return () => {
                     /* NOOP */
                 };

@@ -1,19 +1,17 @@
 'use strict';
 
-export const baseURL = 'http://labs.phaser.io';
+import dungeonTiles from '../../assets/Dungeon_Tileset.png';
 
-export const collidable = {
-    phaserLogo: 'assets/sprites/phaser3-logo.png',
-};
+export const collidable = {};
 
 export const players = {};
 
-export const background = {
-    space: 'assets/skies/space3.png',
-};
+export const background = {};
 
-export const particles = {
-    red: 'assets/particles/red.png',
+export const particles = {};
+
+export const tilesets = {
+    main: dungeonTiles,
 };
 
 export default {
@@ -21,4 +19,5 @@ export default {
     background,
     players,
     particles,
+    tilesets,
 };
